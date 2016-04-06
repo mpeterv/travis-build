@@ -36,7 +36,7 @@ module Travis
 
           sh.fold('lua-install') do
             if lua_version_valid?
-              sh.echo "Installing Lua", ansi: :yellow
+              sh.echo 'Installing Lua', ansi: :yellow
               sh.cmd "hererocks $HOME/.lua -r^ --#{lua_hererocks_version}"
               sh.export 'PATH', '$HOME/.lua/bin:$PATH'
               sh.cmd 'luarocks install busted'
@@ -47,12 +47,12 @@ module Travis
         def announce
           super
 
-          sh.cmd "lua -v"
+          sh.cmd 'lua -v'
           sh.echo ''
         end
 
         def install
-          sh.if '-f *.rockspec'do
+          sh.if '-f *.rockspec' do
             sh.cmd 'luarocks make'
           end
         end
@@ -68,7 +68,7 @@ module Travis
         end
 
         def lua_version_valid?
-          not lua_hererocks_version.nil?
+          !lua_hererocks_version.nil?
         end
 
         def lua_hererocks_version
