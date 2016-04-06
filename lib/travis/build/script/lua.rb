@@ -6,6 +6,10 @@ module Travis
           lua: '5.3'
         }
 
+        def cache_slug
+          super << '--lua-' << version
+        end
+
         def export
           super
 
