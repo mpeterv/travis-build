@@ -32,8 +32,8 @@ module Travis
             if lua_version_valid?
               sh.echo "Installing Lua", ansi: :yellow
               sh.cmd 'pip install hererocks'
-              sh.cmd "hererocks here -r^ --#{lua_hererocks_version}"
-              sh.export 'PATH', '$PATH:$PWD/here/bin'
+              sh.cmd "hererocks $HOME/.lua -r^ --#{lua_hererocks_version}"
+              sh.export 'PATH', '$HOME/.lua/bin:$PATH'
               sh.cmd 'luarocks install busted'
             end
           end

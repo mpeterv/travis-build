@@ -17,31 +17,31 @@ describe Travis::Build::Script::Lua, :sexp do
 
   context "versions" do
     it "installs Lua 5.3 version by default" do
-      should include_sexp [:cmd, "hererocks here -r^ --lua=5.3",
+      should include_sexp [:cmd, "hererocks $HOME/.lua -r^ --lua=5.3",
         assert: true, echo: true, timing: true]
     end
 
     it "installs Lua 5.2 version when specified" do
       data[:config][:lua] = "5.2"
-      should include_sexp [:cmd, "hererocks here -r^ --lua=5.2",
+      should include_sexp [:cmd, "hererocks $HOME/.lua -r^ --lua=5.2",
         assert: true, echo: true, timing: true]
     end
 
     it "installs Lua 5.1 version when specified" do
       data[:config][:lua] = "5.1"
-      should include_sexp [:cmd, "hererocks here -r^ --lua=5.1",
+      should include_sexp [:cmd, "hererocks $HOME/.lua -r^ --lua=5.1",
         assert: true, echo: true, timing: true]
     end
 
     it "installs LuaJIT 2.0 version when specified" do
       data[:config][:lua] = "luajit-2.0"
-      should include_sexp [:cmd, "hererocks here -r^ --luajit=2.0",
+      should include_sexp [:cmd, "hererocks $HOME/.lua -r^ --luajit=2.0",
         assert: true, echo: true, timing: true]
     end
 
     it "installs LuaJIT 2.1 version when specified" do
       data[:config][:lua] = "luajit-2.1"
-      should include_sexp [:cmd, "hererocks here -r^ --luajit=2.1",
+      should include_sexp [:cmd, "hererocks $HOME/.lua -r^ --luajit=2.1",
         assert: true, echo: true, timing: true]
     end
 
