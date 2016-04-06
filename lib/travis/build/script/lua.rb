@@ -12,6 +12,12 @@ module Travis
           sh.export 'TRAVIS_LUA_VERSION', version, echo: false
         end
 
+        def configure
+          super
+
+          sh.cmd "sudo sh -c 'pip install hererocks'"
+        end
+
         def setup
           super
 
@@ -31,7 +37,6 @@ module Travis
           sh.fold('lua-install') do
             if lua_version_valid?
               sh.echo "Installing Lua", ansi: :yellow
-              sh.cmd 'pip install hererocks'
               sh.cmd "hererocks $HOME/.lua -r^ --#{lua_hererocks_version}"
               sh.export 'PATH', '$HOME/.lua/bin:$PATH'
               sh.cmd 'luarocks install busted'
