@@ -48,7 +48,6 @@ module Travis
           super
 
           sh.cmd 'lua -v'
-          sh.echo ''
         end
 
         def install
