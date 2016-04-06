@@ -36,15 +36,14 @@ module Travis
 
           unless lua_version_valid?
             sh.failure "\"#{version}\" is an invalid version of Lua.\nView valid versions of Lua at https://docs.travis-ci.com/user/languages/lua/"
+            return
           end
 
           sh.fold('lua-install') do
-            if lua_version_valid?
-              sh.echo 'Installing Lua', ansi: :yellow
-              sh.cmd "hererocks $HOME/.lua -r^ --#{lua_hererocks_version}"
-              sh.export 'PATH', '$HOME/.lua/bin:$PATH'
-              sh.cmd 'luarocks install busted'
-            end
+            sh.echo 'Installing Lua', ansi: :yellow
+            sh.cmd "hererocks $HOME/.lua -r^ --#{lua_hererocks_version}"
+            sh.export 'PATH', '$HOME/.lua/bin:$PATH'
+            sh.cmd 'luarocks install busted'
           end
         end
 
